@@ -223,23 +223,37 @@ export default function Contact() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#171717] hover:bg-[#315EFB] text-white text-xs sm:text-sm font-medium transition-all shadow-sm disabled:opacity-50"
-                >
-                  {status === "loading" ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                      <span>Sending Message...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Send Message</span>
-                      <Send className="w-3.5 h-3.5" />
-                    </>
-                  )}
-                </button>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#171717] hover:bg-[#315EFB] text-white text-xs sm:text-sm font-medium transition-all shadow-sm disabled:opacity-50"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="w-3.5 h-3.5" />
+                      </>
+                    )}
+                  </button>
+
+                  <a
+                    href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(
+                      formData.subject || "Portfolio Contact Inquiry"
+                    )}&body=${encodeURIComponent(
+                      `Name: ${formData.name || "[Your Name]"}\nEmail: ${formData.email || "[Your Email]"}\n\nMessage:\n${formData.message}`
+                    )}`}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-[#D4D4D4] hover:border-[#171717] bg-white hover:bg-[#FAFAF8] text-[#171717] text-xs sm:text-sm font-medium transition-all shadow-sm"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#737373]" />
+                    <span>Send via Email App</span>
+                  </a>
+                </div>
               </form>
             )}
           </div>
